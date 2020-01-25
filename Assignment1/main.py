@@ -51,10 +51,12 @@ plt.show()
 
 
 t = np.linspace(-20,60, 501)
-p = 4
-pwm_k = 2 / (p * 10.5 + 10)
-pwm_duty = p * 11 / (p * 11 + 10)
+p = 4 # signal period
+n = 11
+pwm_k = 2 / (p * (n - 0.5) + 10)
+pwm_duty = p * n / (p * n + 10)
 sig_k = 2 / p
+
 pwm = 0.5*(signal.square(pwm_k*np.pi*t,duty=pwm_duty)+1)
 sig = 0.5*(signal.square(sig_k*np.pi*t)+1)
 
