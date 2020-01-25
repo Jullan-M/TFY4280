@@ -12,7 +12,6 @@ rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 #rc('font',**{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)
 
-
 t_ = np.linspace(-25,15, 501)
 
 plt.figure()
