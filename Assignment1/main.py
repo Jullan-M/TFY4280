@@ -33,14 +33,15 @@ plt.grid()
 plt.savefig("waveform_triang.pdf")
 plt.show()
 
-def gaussian(x, mu, sigma):
-    return np.exp(-0.5*((x-mu)/sigma)**2) / np.sqrt(2.0*np.pi) / sigma
+def gaussian(x, amp, width):
+    sigma = np.sqrt(0.5*(width/2)**2/(1+ np.log(amp)))
+    return amp*np.exp(-0.5*(x/sigma)**2)
 
 t_gauss = np.linspace(-5,5, 501)
 plt.figure()
 plt.title("Gaussian waveform")
 plt.axhline(1/np.e, c="k", label=r"$y=1/e$")
-plt.plot(t_gauss, 7*gaussian(t_gauss, 0, 1.34329), label=r"Gaussian pulse")
+plt.plot(t_gauss, gaussian(t_gauss, 7, 5), label=r"Gaussian pulse")
 plt.ylim(bottom=0)
 plt.xlim(left=-5, right=5)
 plt.xlabel(r"Time, $t$ / ms")
