@@ -6,6 +6,7 @@ from scipy import signal
 from matplotlib import pyplot as plt
 from matplotlib import rc
 
+# Latex font rendering
 rc('font',**{'family':'sans-serif','sans-serif':['Helvetica']})
 ## for Palatino and other serif fonts use:
 #rc('font',**{'family':'serif','serif':['Palatino']})
