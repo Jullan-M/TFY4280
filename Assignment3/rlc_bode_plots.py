@@ -2,11 +2,11 @@ import numpy as np
 from scipy import signal
 from matplotlib import pyplot as plt
 from matplotlib import rc
-'''
+
 # Latex font rendering
 rc('font',**{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)
-'''
+
 R = 1000.0
 L = 100.0E-6
 C = 5.0E-9
@@ -19,7 +19,7 @@ def amp(f):
 def theta(f):
     return np.arctan(2*np.pi*f * L / ((2*np.pi*f)**2 * RLC - R))
 
-f = np.linspace(1E3, 1E6, 5001)
+f = np.logspace(3, 6, 1001)
 
 plt.figure()
 plt.title("Amplitude")
