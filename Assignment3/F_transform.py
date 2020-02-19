@@ -61,7 +61,7 @@ p_off = 8
 sig_k = 2 / (p_on + p_off)
 sig_duty = p_on / (p_on + p_off)
 
-t = np.linspace(- (p_on + p_off), n * (p_on + p_off) + 5, 1101)
+t = np.linspace(- (p_on + p_off), n * (p_on + p_off) + 5, 1251)
 
 sig4 = 0.5*(signal.square(sig_k*np.pi*(t + p_on/2), duty=sig_duty)+1)
 pwm4 = (np.heaviside(t + p_on, 1) - np.heaviside(t - n * (p_on + p_off) + p_off, 1))
