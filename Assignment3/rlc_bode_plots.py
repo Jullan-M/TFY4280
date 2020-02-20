@@ -1,5 +1,4 @@
 import numpy as np
-from scipy import signal
 from matplotlib import pyplot as plt
 from matplotlib import rc
 
