@@ -16,12 +16,11 @@ sig1_freq = 2 * np.pi * np.fft.fftfreq(len(t_), d = d_)
 
 plt.figure()
 plt.title("$\mathcal{F}$-transform of a rectangular waveform")
-plt.plot(sig1_freq, np.abs(sig1_ft), c="b", label=r'Discrete FT')
+plt.plot(sig1_freq, np.abs(sig1_ft), c="b")
 plt.xlim(left = 0, right = 4000)
 plt.xlabel(r"Angular frequency, $\omega$ / Hz")
 plt.ylabel(r"Magnitude spectrum, $|X(\omega)|$", fontsize=16)
 plt.grid()
-plt.legend(fancybox=True, framealpha = 0)
 plt.savefig("rect_f-transform.pdf")
 plt.show()
 
@@ -50,12 +49,12 @@ d_gauss = 0.040 / 4000
 
 sig3 = gaussian(t_gauss, 7, 5)
 sig3_ft = np.fft.fft(sig3) * d_gauss
-sig3_freq = np.fft.fftfreq(len(t_gauss), d=d_gauss)
+sig3_freq = 2 * np.pi * np.fft.fftfreq(len(t_gauss), d=d_gauss)
 
 plt.figure()
 plt.title("$\mathcal{F}$-transform of a gaussian waveform")
 plt.plot(sig3_freq, np.abs(sig3_ft), c="b")
-plt.xlim(left = 0, right = 1000)
+plt.xlim(left = 0, right = 5000)
 plt.xlabel(r"Angular frequency, $\omega$ / Hz")
 plt.ylabel(r"Magnitude spectrum, $|X(\omega)|$", fontsize=16)
 plt.grid()
@@ -68,14 +67,14 @@ p_off = 8
 sig_k = 2 / (p_on + p_off)
 sig_duty = p_on / (p_on + p_off)
 
-t = np.linspace(- (p_on + p_off) - 30, n * (p_on + p_off) + 30, 18001)
-d = 0.180 / 18000
+t_seq = np.linspace(- (p_on + p_off) - 100, n * (p_on + p_off) + 100, 16001)
+d_seq = 0.320 / 16000
 
-sig4 = 0.5*(signal.square(sig_k*np.pi*(t + p_on/2), duty=sig_duty)+1)
-pwm4 = (np.heaviside(t + p_on, 1) - np.heaviside(t - n * (p_on + p_off) + p_off, 1))
+sig4 = 0.5*(signal.square(sig_k*np.pi*(t_seq + p_on/2), duty=sig_duty)+1)
+pwm4 = (np.heaviside(t_seq + p_on, 1) - np.heaviside(t_seq - n * (p_on + p_off) + p_off, 1))
 
-sig4_ft = np.fft.fft(sig4 * pwm4) * d
-sig4_freq = np.fft.fftfreq(len(t), d=d)
+sig4_ft = np.fft.fft(sig4 * pwm4) * d_seq
+sig4_freq = 2*np.pi*np.fft.fftfreq(len(t_seq), d=d_seq)
 
 plt.figure()
 plt.title(r"$\mathcal{F}$-transform of 11 rectangular pulses")
