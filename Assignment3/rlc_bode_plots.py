@@ -12,20 +12,20 @@ C = 5.0E-9
 RLC = R*L*C
 
 def amp(w):
-    return np.real(R / ( (R - RLC * w**2) + (w * L)**2 ) * \
+    return np.abs(R / ( (R - RLC * w**2) + (w * L)**2 ) * \
            (R - RLC * w**2 - 1j * w * L))
 
 def theta(w):
     return np.arctan(w * L / (w**2 * RLC - R))
 
-f = np.logspace(3, 6, 1001)
+f = np.logspace(3, 7, 1001)
 
 
 plt.figure()
-plt.title("Amplitude")
+plt.title("Amplitude response")
 plt.loglog(f, amp(2*np.pi*f))
 plt.xlabel(r"Frequency, $f$ / ms")
-plt.ylabel(r"Amplitude, $u_2/u_1$", fontsize=16)
+plt.ylabel(r"Amplitude, $|H(f)|$", fontsize=16)
 plt.grid()
 plt.savefig("amp_response.pdf")
 plt.show()
