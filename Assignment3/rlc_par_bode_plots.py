@@ -8,7 +8,7 @@ rc('text', usetex=True)
 
 R = 1000.0
 L = 100.0E-6
-C = 5.0E-12
+C = 5.0E-9
 RLC = R*L*C
 
 def tranfer_func(w):
