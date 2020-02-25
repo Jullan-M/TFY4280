@@ -1,11 +1,15 @@
 from Assignment5.spectrum_analyzer import *
+from matplotlib import rc
+
+# Latex font rendering
+rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 if (__name__ == '__main__'):
-    fs, sig_wav = read_wav('guitar.wav', 16)
+    fs, sig_wav = read_wav('guitar.wav')
 
     gtr = Signal(fs, sig_wav)
     gtr.name = 'guitar'
-    #gtr.plot_signal(t_range=[16.4,17.8])
 
     intrvls = [[0.4,     1.75],
               [1.8,     3.15],
@@ -20,6 +24,7 @@ if (__name__ == '__main__'):
               [15.1,    16.3],
               [16.4,    17.8]]
 
+    gtr.plot_signal(intrvls=intrvls)
 
     strings = []
 
@@ -28,7 +33,8 @@ if (__name__ == '__main__'):
                               gtr[int(intrvls[i][0]*gtr.fs):int(intrvls[i][1]*gtr.fs)]))
         strings[i].name = 'str' + str(i + 1)
 
-    stds = [329.63, 246.94, 196, 146.83,    110,    82.41] # Standard tuning of guitar
+    # Standard tuning of guitar
+    stds = [329.63, 246.94, 196, 146.83,    110,    82.41]
     #       E4      B3      G3      D3      A2      E2
     f_l, f_r = 0, 500
     for string in strings:

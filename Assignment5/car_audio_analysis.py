@@ -1,7 +1,12 @@
 from Assignment5.spectrum_analyzer import *
+from matplotlib import rc
+
+# Latex font rendering
+rc('font',**{'family':'serif','serif':['Palatino']})
+rc('text', usetex=True)
 
 if (__name__ == '__main__'):
-    fs, sig_wav = read_wav('fysikk.wav', 16)
+    fs, sig_wav = read_wav('fysikk.wav')
     car = Signal(fs, sig_wav)
 
     # Analyzing the FIRST pass of the car
