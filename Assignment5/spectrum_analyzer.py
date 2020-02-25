@@ -59,7 +59,7 @@ class Signal:
         plt.show()
 
     def plot_signal(self, t_range=None, intrvls=None):
-        plt.figure()
+        plt.figure(figsize=(11, 4))
         plt.plot(self.t, self.signal, c="b", linewidth=0.5)
         if intrvls is not None:
             for e in intrvls:
@@ -67,8 +67,10 @@ class Signal:
                 plt.axvline(x=e[1], c='r', linewidth=0.7, linestyle='-.')
         if t_range is not None:
             plt.xlim(left = t_range[0], right = t_range[1])
-        plt.xlabel(r"Time, $t$ / s")
-        plt.ylabel(r"Signal, $x(t)$", fontsize=16)
+        else:
+            plt.xlim(left = 0, right = self.t[-1])
+        plt.xlabel(r"Time, $t$ / s", fontsize=14)
+        plt.ylabel(r"Signal, $x(t)$", fontsize=14)
         plt.grid()
         if self.save:
             plt.savefig(self.name + "_signal.pdf")
