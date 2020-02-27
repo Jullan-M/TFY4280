@@ -62,6 +62,7 @@ class Signal:
         plt.figure(figsize=(11, 4))
         plt.plot(self.t, self.signal, c="b", linewidth=0.5)
         if intrvls is not None:
+            plt.xticks()
             for e in intrvls:
                 plt.axvline(x=e[0], c='g', linewidth=0.7, linestyle='--')
                 plt.axvline(x=e[1], c='r', linewidth=0.7, linestyle='-.')
