@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.io import wavfile
+from scipy import signal
 from matplotlib import pyplot as plt
+from matplotlib import cm, colors
 
 class Signal:
     def __init__(self, fs, signal):
@@ -62,7 +64,6 @@ class Signal:
         plt.figure(figsize=(11, 4))
         plt.plot(self.t, self.signal, c="b", linewidth=0.5)
         if intrvls is not None:
-            plt.xticks()
             for e in intrvls:
                 plt.axvline(x=e[0], c='g', linewidth=0.7, linestyle='--')
                 plt.axvline(x=e[1], c='r', linewidth=0.7, linestyle='-.')
@@ -76,6 +77,33 @@ class Signal:
         if self.save:
             plt.savefig(self.name + "_signal.pdf")
         plt.show()
+
+    def plot_spectrogram(self, t_range=None, intrvls=None, freqs=None):
+        f, t, Zxx = signal.stft(self.signal, self.fs, nperseg=1000)
+        Zxx = np.abs(Zxx)
+        fig, ax = plt.subplots(figsize=(9,6))
+        max10 = np.floor(np.log10(np.max(Zxx)))
+        print(max10)
+        levs = np.logspace(-6, max10, 30)
+        cs1 = ax.contourf(t, f, Zxx, levs, cmap = cm.magma, norm=colors.LogNorm())
+        if t_range is not None:
+            plt.xlim(left = t_range[0], right = t_range[1])
+        if intrvls is not None:
+            for e in intrvls:
+                plt.axvline(x=e[0], c='g', linewidth=0.7, linestyle='--')
+                plt.axvline(x=e[1], c='r', linewidth=0.7, linestyle='-.')
+        if freqs is not None:
+            for freq in freqs:
+                plt.axhline(y=freq, c='b', linewidth=0.7, linestyle='--')
+        cbar1 = fig.colorbar(cs1, ax=ax, shrink=0.9, ticks=10**(np.arange(-6, max10)) )
+        cbar1.ax.set_ylabel(r'Amplitude, $X(t, f)$', fontsize=14)
+        plt.xlabel(r"Time, $t$ / s", fontsize=16)
+        plt.ylabel(r"Frequency, $f$ / Hz", fontsize=16)
+        plt.tight_layout()
+        if self.save:
+            plt.savefig(self.name + "_spectrogram.pdf")
+        plt.show()
+
 
 def read_wav(filename):
     print('Reading "' + filename + '".')
