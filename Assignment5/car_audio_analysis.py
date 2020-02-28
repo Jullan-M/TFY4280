@@ -15,7 +15,7 @@ if (__name__ == '__main__'):
     car.name = 'car'
     car.plot_signal(t_range=[0,28.0], intrvls=(intrvls1 + intrvls2) )
     # Analyzing the FIRST pass of the car
-    # From 8s to 14s
+    # From 7s to 14s
     cs1 = []
     for i in range(len(intrvls1)):
         cs1.append(Signal(car.fs, car[int(intrvls1[i][0]*car.fs):int(intrvls1[i][1]*car.fs)]))
