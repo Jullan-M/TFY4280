@@ -1,4 +1,4 @@
-from Assignment5.spectrum_analyzer import *
+from spectrum_analyzer import *
 from matplotlib import rc
 
 # Latex font rendering
