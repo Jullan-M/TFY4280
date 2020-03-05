@@ -84,7 +84,7 @@ class Signal:
         fig, ax = plt.subplots(figsize=(9,6))
         max10 = np.floor(np.log10(np.max(Zxx)))
         levs = np.logspace(-6, max10, 30)
-        cs1 = ax.contourf(t, f, Zxx, levs, cmap = cm.magma, norm=colors.LogNorm())
+        cs1 = ax.contourf(t, f, Zxx, levs, cmap = cm.get_cmap('magma'), norm=colors.LogNorm())
         if t_range is not None:
             plt.xlim(left = t_range[0], right = t_range[1])
         if intrvls is not None:
