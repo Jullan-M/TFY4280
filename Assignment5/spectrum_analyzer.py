@@ -83,7 +83,6 @@ class Signal:
         Zxx = np.abs(Zxx)
         fig, ax = plt.subplots(figsize=(9,6))
         max10 = np.floor(np.log10(np.max(Zxx)))
-        print(max10)
         levs = np.logspace(-6, max10, 30)
         cs1 = ax.contourf(t, f, Zxx, levs, cmap = cm.magma, norm=colors.LogNorm())
         if t_range is not None:

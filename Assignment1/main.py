@@ -1,6 +1,3 @@
-__author__ = 'Jullan'
-# -*- coding: utf-8 -*-
-#Made by Jullan
 import numpy as np
 from scipy import signal
 from matplotlib import pyplot as plt
