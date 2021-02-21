@@ -10,7 +10,7 @@ if (__name__ == '__main__'):
                 [11.9,13.8]]
     intrvls2 = [[21,24.5], #[24.5,25.0],
                 [25.0,27.0]]
-    fs, sig_wav = read_wav('fysikk.wav')
+    fs, sig_wav = read_wav('Assignment5/fysikk.wav')
     car = Signal(fs, sig_wav)
     car.name = 'car'
     car.plot_signal(t_range=[0,28.0], intrvls=(intrvls1 + intrvls2) )

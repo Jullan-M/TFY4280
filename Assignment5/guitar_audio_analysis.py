@@ -29,7 +29,7 @@ if (__name__ == '__main__'):
     std_names = [r'$E_4$', r'$B_3$', r'$G_3$', r'$D_3$', r'$A_2$', r'$E_2$']
 
     # Calculation begins here
-    fs, sig_wav = read_wav('guitar.wav')
+    fs, sig_wav = read_wav('Assignment5/guitar.wav')
 
     gtr = Signal(fs, sig_wav)
     gtr.name = 'guitar'
@@ -54,7 +54,7 @@ if (__name__ == '__main__'):
         plt.xlim(left = f_l, right = f_r)
         plt.ylim(bottom=0)
         plt.xlabel(r"Frequency, $f$ / Hz", fontsize=16)
-        plt.ylabel(r"$|X(\omega)|$", fontsize=16)
+        plt.ylabel(r"$|X(f)|$", fontsize=16)
         plt.grid()
         plt.savefig(strings[s].name + "_magn_spec.pdf")
         plt.show()
