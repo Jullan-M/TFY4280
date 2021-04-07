@@ -7,7 +7,6 @@ from matplotlib import rc
 rc('font',**{'family':'serif','serif':['Palatino']})
 rc('text', usetex=True)
 
-
 # NOTE: Array elements should always be FLOATs, not INTs! Otherwise this does not work.
 A = [[-6.,-5.],[1.,0.]]
 B = [[0.], [2.]]
