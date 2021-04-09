@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from matplotlib import rc
 
 # Latex font rendering
-rc('font',**{'family':'serif','serif':['Palatino']})
+rc('font', **{'family': 'serif', 'serif': ['Palatino']})
 rc('text', usetex=True)
 
 num = [1, -0.4, 0]
@@ -16,7 +16,7 @@ t_step, y_step = sys.step(n=20)
 
 plt.figure()
 plt.title(f"Step response")
-plt.stem(t_step, np.squeeze(y_step))
+plt.stem(t_step, np.squeeze(y_step), use_line_collection=True)
 plt.xlabel(r"Discrete time, $n$", fontsize=16)
 plt.ylabel(r"Output, $y[n]$", fontsize=16)
 plt.grid()
@@ -26,7 +26,7 @@ plt.show()
 
 plt.figure()
 plt.title(f"Impulse response")
-plt.stem(t_step, np.squeeze(y_imp))
+plt.stem(t_step, np.squeeze(y_imp), use_line_collection=True)
 plt.xlabel(r"Discrete time, $n$", fontsize=16)
 plt.ylabel(r"Output, $y[n]$", fontsize=16)
 plt.grid()
